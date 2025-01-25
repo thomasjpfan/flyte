@@ -6268,11 +6268,78 @@ export namespace flyteidl {
             public static verify(message: { [k: string]: any }): (string|null);
         }
 
+        /** Properties of a SharedMemoryVolume. */
+        interface ISharedMemoryVolume {
+
+            /** SharedMemoryVolume mountPath */
+            mountPath?: (string|null);
+
+            /** SharedMemoryVolume mountName */
+            mountName?: (string|null);
+
+            /** SharedMemoryVolume sizeLimit */
+            sizeLimit?: (string|null);
+        }
+
+        /** Represents a SharedMemoryVolume. */
+        class SharedMemoryVolume implements ISharedMemoryVolume {
+
+            /**
+             * Constructs a new SharedMemoryVolume.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: flyteidl.core.ISharedMemoryVolume);
+
+            /** SharedMemoryVolume mountPath. */
+            public mountPath: string;
+
+            /** SharedMemoryVolume mountName. */
+            public mountName: string;
+
+            /** SharedMemoryVolume sizeLimit. */
+            public sizeLimit: string;
+
+            /**
+             * Creates a new SharedMemoryVolume instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns SharedMemoryVolume instance
+             */
+            public static create(properties?: flyteidl.core.ISharedMemoryVolume): flyteidl.core.SharedMemoryVolume;
+
+            /**
+             * Encodes the specified SharedMemoryVolume message. Does not implicitly {@link flyteidl.core.SharedMemoryVolume.verify|verify} messages.
+             * @param message SharedMemoryVolume message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: flyteidl.core.ISharedMemoryVolume, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a SharedMemoryVolume message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns SharedMemoryVolume
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): flyteidl.core.SharedMemoryVolume;
+
+            /**
+             * Verifies a SharedMemoryVolume message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+        }
+
         /** Properties of an ExtendedResources. */
         interface IExtendedResources {
 
             /** ExtendedResources gpuAccelerator */
             gpuAccelerator?: (flyteidl.core.IGPUAccelerator|null);
+
+            /** ExtendedResources sharedMemoryVolume */
+            sharedMemoryVolume?: (flyteidl.core.ISharedMemoryVolume|null);
         }
 
         /** Represents an ExtendedResources. */
@@ -6286,6 +6353,9 @@ export namespace flyteidl {
 
             /** ExtendedResources gpuAccelerator. */
             public gpuAccelerator?: (flyteidl.core.IGPUAccelerator|null);
+
+            /** ExtendedResources sharedMemoryVolume. */
+            public sharedMemoryVolume?: (flyteidl.core.ISharedMemoryVolume|null);
 
             /**
              * Creates a new ExtendedResources instance using the specified properties.
