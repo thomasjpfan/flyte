@@ -63,8 +63,8 @@ func buildNodeSpec(n *core.Node, tasks []*core.CompiledTask, errs errors.Compile
 				containerImage = overrides.GetContainerImage()
 			}
 
-			if overrides.GetOverrideSecurityContext() != nil {
-				overrideSecurityContext = overrides.GetOverrideSecurityContext()
+			if overrides.GetSecurityContext() != nil {
+				overrideSecurityContext = overrides.GetSecurityContext()
 			}
 
 			if overrides.GetPodTemplate() != nil {

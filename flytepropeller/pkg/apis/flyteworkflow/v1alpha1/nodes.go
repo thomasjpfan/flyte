@@ -278,6 +278,6 @@ func (in *NodeSpec) GetPodTemplate() *core.K8SPod {
 	return in.PodTemplate
 }
 
-func (in *NodeSpec) GetOverrideSecurityContext() *core.SecurityContext {
+func (in *NodeSpec) GetSecurityContext() *core.SecurityContext {
 	return in.OverrideSecurityContext
 }

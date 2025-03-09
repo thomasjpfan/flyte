@@ -1243,9 +1243,9 @@ export class TaskNodeOverrides extends Message<TaskNodeOverrides> {
    * Override for the security context
    * +optional
    *
-   * @generated from field: flyteidl.core.SecurityContext override_security_context = 5;
+   * @generated from field: flyteidl.core.SecurityContext security_context = 5;
    */
-  overrideSecurityContext?: SecurityContext;
+  securityContext?: SecurityContext;
 
   constructor(data?: PartialMessage<TaskNodeOverrides>) {
     super();
@@ -1259,7 +1259,7 @@ export class TaskNodeOverrides extends Message<TaskNodeOverrides> {
     { no: 2, name: "extended_resources", kind: "message", T: ExtendedResources },
     { no: 3, name: "container_image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "pod_template", kind: "message", T: K8sPod },
-    { no: 5, name: "override_security_context", kind: "message", T: SecurityContext },
+    { no: 5, name: "security_context", kind: "message", T: SecurityContext },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TaskNodeOverrides {

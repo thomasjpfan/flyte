@@ -444,6 +444,7 @@ type ExecutableNode interface {
 	GetName() string
 	GetContainerImage() string
 	GetPodTemplate() *core.K8SPod
+	GetSecurityContext() *core.SecurityContext
 }
 
 // ExecutableWorkflowStatus is an interface for the Workflow p. This is the mutable portion for a Workflow

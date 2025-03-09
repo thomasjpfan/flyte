@@ -5191,8 +5191,8 @@ export namespace flyteidl {
             /** TaskNodeOverrides podTemplate */
             podTemplate?: (flyteidl.core.IK8sPod|null);
 
-            /** TaskNodeOverrides overrideSecurityContext */
-            overrideSecurityContext?: (flyteidl.core.ISecurityContext|null);
+            /** TaskNodeOverrides securityContext */
+            securityContext?: (flyteidl.core.ISecurityContext|null);
         }
 
         /** Represents a TaskNodeOverrides. */
@@ -5216,8 +5216,8 @@ export namespace flyteidl {
             /** TaskNodeOverrides podTemplate. */
             public podTemplate?: (flyteidl.core.IK8sPod|null);
 
-            /** TaskNodeOverrides overrideSecurityContext. */
-            public overrideSecurityContext?: (flyteidl.core.ISecurityContext|null);
+            /** TaskNodeOverrides securityContext. */
+            public securityContext?: (flyteidl.core.ISecurityContext|null);
 
             /**
              * Creates a new TaskNodeOverrides instance using the specified properties.

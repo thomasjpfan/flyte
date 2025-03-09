@@ -252,8 +252,8 @@ func NewSubTaskExecutionMetadata(taskExecutionMetadata pluginsCore.TaskExecution
 	var err error
 	secretsMap := make(map[string]string)
 	injectSecretsLabel := make(map[string]string)
-	if taskExecutionMetadata.GetOverrides().GetOverrideSecurityContext() != nil && len(taskExecutionMetadata.GetOverrides().GetOverrideSecurityContext().GetSecrets()) > 0 {
-		secretsMap, err = secrets.MarshalSecretsToMapStrings(taskExecutionMetadata.GetOverrides().GetOverrideSecurityContext().GetSecrets())
+	if taskExecutionMetadata.GetOverrides().GetSecurityContext() != nil && len(taskExecutionMetadata.GetOverrides().GetSecurityContext().GetSecrets()) > 0 {
+		secretsMap, err = secrets.MarshalSecretsToMapStrings(taskExecutionMetadata.GetOverrides().GetSecurityContext().GetSecrets())
 		if err != nil {
 			return SubTaskExecutionMetadata{}, err
 		}

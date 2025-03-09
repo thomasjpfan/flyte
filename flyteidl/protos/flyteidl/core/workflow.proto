@@ -347,9 +347,9 @@ message TaskNodeOverrides {
     //+optional
     K8sPod pod_template = 4;
 
-    // Override for the security context
+    // Override for the security context. Only the Secrets will be overridden.
     //+optional
-    SecurityContext override_security_context = 5;
+    SecurityContext security_context = 5;
 }
 
 // A structure that uniquely identifies a launch plan in the system.

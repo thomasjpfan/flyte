@@ -8398,7 +8398,7 @@
           "$ref": "#/definitions/coreK8sPod",
           "title": "Override for the pod template used by task pods\n+optional"
         },
-        "override_security_context": {
+        "security_context": {
           "$ref": "#/definitions/coreSecurityContext",
           "title": "Override for the security context\n+optional"
         }

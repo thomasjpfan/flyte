@@ -2824,7 +2824,7 @@ pub struct TaskNodeOverrides {
     /// Override for the security context
     /// +optional
     #[prost(message, optional, tag="5")]
-    pub override_security_context: ::core::option::Option<SecurityContext>,
+    pub security_context: ::core::option::Option<SecurityContext>,
 }
 /// A structure that uniquely identifies a launch plan in the system.
 #[allow(clippy::derive_partial_eq_without_eq)]

@@ -16,7 +16,7 @@ type TaskOverrides interface {
 	GetExtendedResources() *core.ExtendedResources
 	GetContainerImage() string
 	GetPodTemplate() *core.K8SPod
-	GetOverrideSecurityContext() *core.SecurityContext
+	GetSecurityContext() *core.SecurityContext
 	GetConfig() *v1.ConfigMap
 }
 
