@@ -255,6 +255,53 @@ func (_c *TaskOverrides_GetResources_Call) RunAndReturn(run func() *v1.ResourceR
 	return _c
 }
 
+// GetSecurityContext provides a mock function with given fields:
+func (_m *TaskOverrides) GetSecurityContext() *flyteidlcore.SecurityContext {
+	ret := _m.Called()
+
+	if len(ret) == 0 {
+		panic("no return value specified for GetSecurityContext")
+	}
+
+	var r0 *flyteidlcore.SecurityContext
+	if rf, ok := ret.Get(0).(func() *flyteidlcore.SecurityContext); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*flyteidlcore.SecurityContext)
+		}
+	}
+
+	return r0
+}
+
+// TaskOverrides_GetSecurityContext_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetSecurityContext'
+type TaskOverrides_GetSecurityContext_Call struct {
+	*mock.Call
+}
+
+// GetSecurityContext is a helper method to define mock.On call
+func (_e *TaskOverrides_Expecter) GetSecurityContext() *TaskOverrides_GetSecurityContext_Call {
+	return &TaskOverrides_GetSecurityContext_Call{Call: _e.mock.On("GetSecurityContext")}
+}
+
+func (_c *TaskOverrides_GetSecurityContext_Call) Run(run func()) *TaskOverrides_GetSecurityContext_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run()
+	})
+	return _c
+}
+
+func (_c *TaskOverrides_GetSecurityContext_Call) Return(_a0 *flyteidlcore.SecurityContext) *TaskOverrides_GetSecurityContext_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *TaskOverrides_GetSecurityContext_Call) RunAndReturn(run func() *flyteidlcore.SecurityContext) *TaskOverrides_GetSecurityContext_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // NewTaskOverrides creates a new instance of TaskOverrides. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewTaskOverrides(t interface {

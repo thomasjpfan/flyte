@@ -50,16 +50,27 @@ func newTaskExecutionMetadata(tCtx pluginsCore.TaskExecutionMetadata, taskTmpl *
 	var err error
 	secretsMap := make(map[string]string)
 	injectLabels := make(map[string]string)
-	if taskTmpl.GetSecurityContext() != nil && len(taskTmpl.GetSecurityContext().GetSecrets()) > 0 {
+	if tCtx.GetOverrides().GetOverrideSecurityContext() != nil && len(tCtx.GetOverrides().GetOverrideSecurityContext().GetSecrets()) > 0 {
+		secretsMap, err = secrets.MarshalSecretsToMapStrings(tCtx.GetOverrides().GetOverrideSecurityContext().GetSecrets())
+		if err != nil {
+			return TaskExecutionMetadata{}, err
+		}
+		injectLabels[secrets.PodLabel] = secrets.PodLabelValue
+	} else if taskTmpl.GetSecurityContext() != nil && len(taskTmpl.GetSecurityContext().GetSecrets()) > 0 {
 		secretsMap, err = secrets.MarshalSecretsToMapStrings(taskTmpl.GetSecurityContext().GetSecrets())
 		if err != nil {
 			return TaskExecutionMetadata{}, err
 		}
-
 		injectLabels[secrets.PodLabel] = secrets.PodLabelValue
 	}
 
-	id := tCtx.GetSecurityContext().RunAs.GetExecutionIdentity() //nolint:protogetter
+	var id string
+	if tCtx.GetOverrides().GetOverrideSecurityContext() != nil && tCtx.GetOverrides().GetOverrideSecurityContext().GetRunAs() != nil {
+		id = tCtx.GetOverrides().GetOverrideSecurityContext().GetRunAs().GetExecutionIdentity()
+	} else {
+		id = tCtx.GetSecurityContext().RunAs.GetExecutionIdentity() //nolint:protogetter
+	}
+
 	if len(id) > 0 {
 		sanitizedID := k8sUtils.SanitizeLabelValue(id)
 		injectLabels[executionIdentityVariable] = sanitizedID

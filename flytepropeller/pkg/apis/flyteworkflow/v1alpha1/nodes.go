@@ -161,6 +161,9 @@ type NodeSpec struct {
 	ContainerImage string `json:"containerImage,omitempty"`
 
 	PodTemplate *core.K8SPod `json:"podTemplate,omitempty" protobuf:"bytes,23,opt,name=podTemplate"`
+
+	// If specified, the core security context will be overwritten.
+	OverrideSecurityContext *core.SecurityContext `json:"overrideSecurityContext,omitempty" protobuf:"bytes,27,opt,name=overrideSecurityContext"`
 }
 
 func (in *NodeSpec) GetName() string {
@@ -273,4 +276,8 @@ func (in *NodeSpec) GetContainerImage() string {
 
 func (in *NodeSpec) GetPodTemplate() *core.K8SPod {
 	return in.PodTemplate
+}
+
+func (in *NodeSpec) GetOverrideSecurityContext() *core.SecurityContext {
+	return in.OverrideSecurityContext
 }

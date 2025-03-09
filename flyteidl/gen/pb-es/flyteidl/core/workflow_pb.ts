@@ -12,6 +12,7 @@ import { Binding, LiteralMap, RetryStrategy } from "./literals_pb.js";
 import { QualityOfService } from "./execution_pb.js";
 import { TypedInterface } from "./interface_pb.js";
 import { ExtendedResources, K8sPod, Resources } from "./tasks_pb.js";
+import { SecurityContext } from "./security_pb.js";
 
 /**
  * Defines a condition and the execution unit that should be executed if the condition is satisfied.
@@ -977,7 +978,7 @@ export class Node extends Message<Node> {
  */
 export class WorkflowMetadata extends Message<WorkflowMetadata> {
   /**
-   * Indicates the runtime priority of workflow executions. 
+   * Indicates the runtime priority of workflow executions.
    *
    * @generated from field: flyteidl.core.QualityOfService quality_of_service = 1;
    */
@@ -1209,7 +1210,7 @@ export class WorkflowTemplate extends Message<WorkflowTemplate> {
  */
 export class TaskNodeOverrides extends Message<TaskNodeOverrides> {
   /**
-   * A customizable interface to convey resources requested for a task container. 
+   * A customizable interface to convey resources requested for a task container.
    *
    * @generated from field: flyteidl.core.Resources resources = 1;
    */
@@ -1238,6 +1239,14 @@ export class TaskNodeOverrides extends Message<TaskNodeOverrides> {
    */
   podTemplate?: K8sPod;
 
+  /**
+   * Override for the security context
+   * +optional
+   *
+   * @generated from field: flyteidl.core.SecurityContext override_security_context = 5;
+   */
+  overrideSecurityContext?: SecurityContext;
+
   constructor(data?: PartialMessage<TaskNodeOverrides>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1250,6 +1259,7 @@ export class TaskNodeOverrides extends Message<TaskNodeOverrides> {
     { no: 2, name: "extended_resources", kind: "message", T: ExtendedResources },
     { no: 3, name: "container_image", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "pod_template", kind: "message", T: K8sPod },
+    { no: 5, name: "override_security_context", kind: "message", T: SecurityContext },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TaskNodeOverrides {

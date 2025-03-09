@@ -12616,6 +12616,7 @@
                  * @property {flyteidl.core.IExtendedResources|null} [extendedResources] TaskNodeOverrides extendedResources
                  * @property {string|null} [containerImage] TaskNodeOverrides containerImage
                  * @property {flyteidl.core.IK8sPod|null} [podTemplate] TaskNodeOverrides podTemplate
+                 * @property {flyteidl.core.ISecurityContext|null} [overrideSecurityContext] TaskNodeOverrides overrideSecurityContext
                  */
     
                 /**
@@ -12666,6 +12667,14 @@
                 TaskNodeOverrides.prototype.podTemplate = null;
     
                 /**
+                 * TaskNodeOverrides overrideSecurityContext.
+                 * @member {flyteidl.core.ISecurityContext|null|undefined} overrideSecurityContext
+                 * @memberof flyteidl.core.TaskNodeOverrides
+                 * @instance
+                 */
+                TaskNodeOverrides.prototype.overrideSecurityContext = null;
+    
+                /**
                  * Creates a new TaskNodeOverrides instance using the specified properties.
                  * @function create
                  * @memberof flyteidl.core.TaskNodeOverrides
@@ -12697,6 +12706,8 @@
                         writer.uint32(/* id 3, wireType 2 =*/26).string(message.containerImage);
                     if (message.podTemplate != null && message.hasOwnProperty("podTemplate"))
                         $root.flyteidl.core.K8sPod.encode(message.podTemplate, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    if (message.overrideSecurityContext != null && message.hasOwnProperty("overrideSecurityContext"))
+                        $root.flyteidl.core.SecurityContext.encode(message.overrideSecurityContext, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                     return writer;
                 };
     
@@ -12729,6 +12740,9 @@
                             break;
                         case 4:
                             message.podTemplate = $root.flyteidl.core.K8sPod.decode(reader, reader.uint32());
+                            break;
+                        case 5:
+                            message.overrideSecurityContext = $root.flyteidl.core.SecurityContext.decode(reader, reader.uint32());
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -12766,6 +12780,11 @@
                         var error = $root.flyteidl.core.K8sPod.verify(message.podTemplate);
                         if (error)
                             return "podTemplate." + error;
+                    }
+                    if (message.overrideSecurityContext != null && message.hasOwnProperty("overrideSecurityContext")) {
+                        var error = $root.flyteidl.core.SecurityContext.verify(message.overrideSecurityContext);
+                        if (error)
+                            return "overrideSecurityContext." + error;
                     }
                     return null;
                 };

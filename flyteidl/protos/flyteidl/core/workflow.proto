@@ -263,7 +263,7 @@ message Node {
 // This is workflow layer metadata. These settings are only applicable to the workflow as a whole, and do not
 // percolate down to child entities (like tasks) launched by the workflow.
 message WorkflowMetadata {
-    // Indicates the runtime priority of workflow executions. 
+    // Indicates the runtime priority of workflow executions.
     QualityOfService quality_of_service = 1;
 
     // Failure Handling Strategy
@@ -284,7 +284,7 @@ message WorkflowMetadata {
     OnFailurePolicy on_failure = 2;
 
     // Arbitrary tags that allow users and the platform to store small but arbitrary labels
-    map<string, string> tags = 3; 
+    map<string, string> tags = 3;
 }
 
 // The difference between these settings and the WorkflowMetadata ones is that these are meant to be passed down to
@@ -333,7 +333,7 @@ message WorkflowTemplate {
 
 // Optional task node overrides that will be applied at task execution time.
 message TaskNodeOverrides {
-    // A customizable interface to convey resources requested for a task container. 
+    // A customizable interface to convey resources requested for a task container.
     Resources resources = 1;
 
     // Overrides for all non-standard resources, not captured by
@@ -346,6 +346,10 @@ message TaskNodeOverrides {
     // Override for the pod template used by task pods
     //+optional
     K8sPod pod_template = 4;
+
+    // Override for the security context
+    //+optional
+    SecurityContext override_security_context = 5;
 }
 
 // A structure that uniquely identifies a launch plan in the system.

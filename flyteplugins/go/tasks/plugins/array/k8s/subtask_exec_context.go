@@ -252,15 +252,19 @@ func NewSubTaskExecutionMetadata(taskExecutionMetadata pluginsCore.TaskExecution
 	var err error
 	secretsMap := make(map[string]string)
 	injectSecretsLabel := make(map[string]string)
-	if taskTemplate.GetSecurityContext() != nil && len(taskTemplate.GetSecurityContext().GetSecrets()) > 0 {
+	if taskExecutionMetadata.GetOverrides().GetOverrideSecurityContext() != nil && len(taskExecutionMetadata.GetOverrides().GetOverrideSecurityContext().GetSecrets()) > 0 {
+		secretsMap, err = secrets.MarshalSecretsToMapStrings(taskExecutionMetadata.GetOverrides().GetOverrideSecurityContext().GetSecrets())
+		if err != nil {
+			return SubTaskExecutionMetadata{}, err
+		}
+		injectSecretsLabel = map[string]string{secrets.PodLabel: secrets.PodLabelValue}
+
+	} else if taskTemplate.GetSecurityContext() != nil && len(taskTemplate.GetSecurityContext().GetSecrets()) > 0 {
 		secretsMap, err = secrets.MarshalSecretsToMapStrings(taskTemplate.GetSecurityContext().GetSecrets())
 		if err != nil {
 			return SubTaskExecutionMetadata{}, err
 		}
-
-		injectSecretsLabel = map[string]string{
-			secrets.PodLabel: secrets.PodLabelValue,
-		}
+		injectSecretsLabel = map[string]string{secrets.PodLabel: secrets.PodLabelValue}
 	}
 
 	subTaskExecutionID := NewSubTaskExecutionID(taskExecutionMetadata.GetTaskExecutionID(), executionIndex, retryAttempt)

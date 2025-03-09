@@ -2708,7 +2708,7 @@ pub mod node {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct WorkflowMetadata {
-    /// Indicates the runtime priority of workflow executions. 
+    /// Indicates the runtime priority of workflow executions.
     #[prost(message, optional, tag="1")]
     pub quality_of_service: ::core::option::Option<QualityOfService>,
     /// Defines how the system should behave when a failure is detected in the workflow execution.
@@ -2807,7 +2807,7 @@ pub struct WorkflowTemplate {
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TaskNodeOverrides {
-    /// A customizable interface to convey resources requested for a task container. 
+    /// A customizable interface to convey resources requested for a task container.
     #[prost(message, optional, tag="1")]
     pub resources: ::core::option::Option<Resources>,
     /// Overrides for all non-standard resources, not captured by
@@ -2821,6 +2821,10 @@ pub struct TaskNodeOverrides {
     /// +optional
     #[prost(message, optional, tag="4")]
     pub pod_template: ::core::option::Option<K8sPod>,
+    /// Override for the security context
+    /// +optional
+    #[prost(message, optional, tag="5")]
+    pub override_security_context: ::core::option::Option<SecurityContext>,
 }
 /// A structure that uniquely identifies a launch plan in the system.
 #[allow(clippy::derive_partial_eq_without_eq)]
